@@ -29,3 +29,8 @@ class Log {
 const weblog = new Log('.js-message');
 weblog.clear();
 weblog.add('Hello!');
+
+// let scroller = document.addEventListener('scroll', function reportscroll() {
+//   console.log('scroll!');
+
+// });
