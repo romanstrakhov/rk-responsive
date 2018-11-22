@@ -1,15 +1,15 @@
-let gulp = require('gulp');
-let watch = require('gulp-watch');
-let sass = require('gulp-sass');
-let changed = require('gulp-changed');
+const gulp = require('gulp');
+const watch = require('gulp-watch');
+const sass = require('gulp-sass');
+const changed = require('gulp-changed');
 
-let connect = require('gulp-connect');
+const connect = require('gulp-connect');
 // let livereload = require('gulp-livereload');
 
 // var wait = require('gulp-wait');
 // var waitD1 = 5000;
 
-let distPath = 'dist';
+const distPath = 'dist';
 
 gulp.task('serve', function () {
     connect.server({
