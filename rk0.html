@@ -1,0 +1,23 @@
+<html>
+<head>
+    <base href="https://www.roscosmos.ru/">
+
+</head>
+<body>
+
+    <video id="background_player" poster="/im/rocket_up_1.jpg" controls preload="metadata" autoplay="autoplay"><source src="/im/rocket_up_1280.mp4" type="video/mp4"/></video>
+
+    <script>
+        function ready() {
+            alert( 'DOM готов' );
+            let player = document.querySelector('#background_player');
+            alert( "Размеры картинки: " + player.offsetWidth + "x" + player.offsetHeight );
+            player.play();
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
+
+</body>
+
+</html>
+
