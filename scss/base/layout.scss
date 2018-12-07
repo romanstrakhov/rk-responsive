@@ -23,7 +23,7 @@ div.content {
 }
 
 div.js-message {
-    position: absolute;
+    position: fixed;
     top:20px;
     right:20px;
     width:460px;
@@ -33,6 +33,7 @@ div.js-message {
     border-radius: 20px;
     padding:20px;
     font-family: monospace;
+    word-wrap: pre;
     overflow: scroll;
     z-index:1000;
 }
