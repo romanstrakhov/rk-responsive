@@ -22,20 +22,48 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
-  <p>Hello World! This is HTML5 Boilerplate.</p>
+  <!-- <p>Hello World! This is HTML5 Boilerplate.</p> -->
   <!-- <script src="js/plugins.js"></script> -->
 
-<button onclick="window.location.assign('#red');document.querySelector('.go_red').scrollIntoView();">Red</button>
-<button onclick="window.location.assign('#blue');document.querySelector('.go_blue').scrollIntoView();">Blue</button>
-<button onclick="window.location.assign('#green');document.querySelector('.go_green').scrollIntoView();">Green</button>
 
-  <div class="js-message">Test</div>
+  <header class="header">
+      <div class="header_logo">
+        Logo
+      </div>
+      <nav class="header_nav">
+        <ul>
+          <li><a href="#one">One</a></li>
+          <li><a href="#two">Two</a></li>
+          <li><a href="#three">Three</a></li>
+        </ul>
+        <button onclick="window.location.assign('#red');document.querySelector('.go_red').scrollIntoView();">Red</button>
+        <button onclick="window.location.assign('#blue');document.querySelector('.go_blue').scrollIntoView();">Blue</button>
+        <button onclick="window.location.assign('#green');document.querySelector('.go_green').scrollIntoView();">Green</button>
+      </nav>
+    </header>
+    
+    <section id="one" class="section_screen">
+      <a class="go_red" name="one"></a><h1>One</h1>
+      
+    </section>
+    
+    <section id="two" class="section_screen">
+        <a class="go_green" name="two"></a><h1>Two</h1>
+      
+    </section>
+    
+    <section id="three" class="section_screen">
+        <a class="go_blue" name="three"></a><h1>Three</h1>
+      
+      
+    </section>
 
-<div class="content">
-  <div class="red"><a class="go_red" name="red"></a>RED</div>
-  <div class="blue"><a class="go_blue" name="blue"></a>BLUE</div>
-  <div class="green"><a class="go_green" name="green"></a>THE GREEN</div>
-</div>
+    <footer>
+      &copy; 2018
+    </footer>
+    
+    <div class="console hidden"></div>
+
 
 <script src="js/main.js"></script>
 

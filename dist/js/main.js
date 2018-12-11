@@ -1,36 +1,75 @@
 const a = 1;
 console.log(`a = ${a}`);
 
-class Log {
+class ScreenConsole {
   constructor(item) {
-    this.consoleDiv = document.querySelector(item);
-    this.hidden = this.show(false);
+    this.item = document.querySelector(item);
+    this.show();
+    this.log('Console started.\n');
   }
 
-  show(value) {
-    this.hidden = value;
-    return value;
+  log(string) {
+    this.item.innerHTML += string;
+  }
+
+  hide() {
+    this.item.classList.add('hidden');
+  }
+
+  show() {
+    this.item.classList.remove('hidden');
   }
 
   clear() {
-    this.consoleDiv.innerHTML = '';
-  }
-
-  add(string) {
-    this.consoleDiv.innerHTML += string;
-  }
-
-  clearadd(string) {
-    this.clear();
-    this.add(string);
+    this.item.innerHTML = '';
+    this.log('Console clear.\n');
   }
 }
 
-const weblog = new Log('.js-message');
-weblog.clear();
-weblog.add('Hello!');
+const miniconsole = new ScreenConsole('div.console');
+miniconsole.log('Hi!');
 
-// let scroller = document.addEventListener('scroll', function reportscroll() {
-//   console.log('scroll!');
+class StickyHeader {
+  constructor(item, state, position) {
+    miniconsole.log('Header initialization...');
+    this.item = document.querySelector(item);
+    this.sticky = this.stick(state);
+    this.position = position;
+    this.addScrollHandler(this);
+    miniconsole.log('done\n');
+    miniconsole.log(`offsetHeight: ${this.item.offsetHeight}\n`);
+  }
 
-// });
+  addScrollHandler(e) {
+    window.addEventListener('scroll', () => {
+      e.check();
+    });
+  }
+
+  stick(state) {
+    if (this.sticky !== state) {
+      miniconsole.log(`\n${this.sticky ? 'true' : 'false'} -> `);
+      if (state === true) {
+        this.item.classList.add('sticky');
+        miniconsole.log('true\n');
+        this.sticky = true;
+        return true;
+      }
+      this.item.classList.remove('sticky');
+      miniconsole.log('false\n');
+      this.sticky = false;
+      return false;
+    } return state;
+  }
+
+  check() {
+    miniconsole.log('.');
+    //      miniconsole.log(window.pageYOffset + ':' + this.position + '\n' );
+    this.stick(window.pageYOffset > this.position);
+  }
+}
+
+const header = new StickyHeader('header', false, 100);
+
+miniconsole.log('Hello!\n');
+console.log('Test');
