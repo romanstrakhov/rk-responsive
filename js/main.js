@@ -1,5 +1,3 @@
-const a = 1;
-console.log(`a = ${a}`);
 
 class ScreenConsole {
   constructor(item) {
@@ -49,25 +47,25 @@ class StickyHeader {
 
   stick(state) {
     if (this.sticky !== state) {
-      miniconsole.log(`\n${this.sticky ? 'true' : 'false'} -> `);
+      // miniconsole.log(`\n${this.sticky ? 'true' : 'false'} -> `);
       if (state === true) {
         this.item.classList.add('sticky');
-        miniconsole.log('true\n');
+        // miniconsole.log('true\n');
         this.sticky = true;
         return true;
       }
       this.item.classList.remove('sticky');
-      miniconsole.log('false\n');
+      // miniconsole.log('false\n');
       this.sticky = false;
       return false;
     } return state;
   }
 
   check() {
-    miniconsole.log('.');
-    miniconsole.clear('.');
-    miniconsole.log(`${window.pageYOffset }` + '');
-    //      miniconsole.log(window.pageYOffset + ':' + this.position + '\n' );
+    // miniconsole.log('.');
+    // miniconsole.clear('.');
+    // miniconsole.log(`${window.pageYOffset}` + '');
+    // miniconsole.log(window.pageYOffset + ':' + this.position + '\n' );
     this.stick(window.pageYOffset > this.position);
     return this;
   }
@@ -94,7 +92,7 @@ class SectionScreens {
       miniconsole.log(e.offsetTop);
       miniconsole.log(', ');
     });
-    console.log(this.sections);
+    // console.log(this.sections);
     return this;
   }
 
@@ -106,29 +104,42 @@ class SectionScreens {
   }
 
   check() {
-
-    const pos = window.pageYOffset;
-    const e = this.sections.reduce((result, current) => {
-      if (Math.abs(pos - current.offsetTop) < Math.abs(pos - result.offsetTop)) {
-        return current;
+    const position = window.pageYOffset;
+    const currentPosition = this.sections.reduce((result, current, index, arr) => {
+      if (Math.abs(position - current.offsetTop) < Math.abs(position - arr[result].offsetTop)) {
+        return index;
       }
       return result;
-    }, this.sections[0]);
-    miniconsole.log(e.link);
+    }, 0);
+
+    if (currentPosition !== this.current) {
+      this.current = currentPosition;
+      this.changed();
+    }
+
 
     return this;
   }
 
   changed() {
+    miniconsole.log(`screen changed to: ${this.sections[this.current].link} id=${this.current}\n`);
+    this.scrollTo(this.current);
+    return this;
+  }
 
-    
+  scrollTo(index) {
+    miniconsole.log(`scrollTo(${this.current}): ${this.sections[this.current].offsetTop}\n\n`);
+    this.sections[index].element.scrollIntoView();
+    // window.scrollTo(0, this.sections[index].osffsetTop);
+
+
     return this;
   }
 }
 
 window.onload = () => {
   const header = new StickyHeader('header', false, 50);
-  const sections = new SectionScreens('section.section_screen'); 
+  const sections = new SectionScreens('section.section_screen');
 
   miniconsole.log('\n');
 
